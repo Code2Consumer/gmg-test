@@ -2,18 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\JsonResponseService;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     /**
+     * @var JsonResponseService $responseService
+     */
+    private $responseService;
+
+    /**
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+
+    }
+
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return $this->responseService->response($users);
     }
 
     /**
