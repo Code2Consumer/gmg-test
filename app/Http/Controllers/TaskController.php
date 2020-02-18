@@ -40,12 +40,12 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        try{
+        try {
             $task = isset($request->id) ? Task::with(['User'])->findOrFail($request->id) : new Task();
             $data = $request->all();
             $task = $task->fill($data);
@@ -58,7 +58,7 @@ class TaskController extends Controller
             return $this->responseService
                 ->response(
                     [],
-                    [ $e->getCode() . ' : ' . $e->getMessage() ]
+                    [$e->getCode() . ' : ' . $e->getMessage()]
                 );
         }
     }
@@ -66,13 +66,13 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
         $task = Task::with(['User'])->find($id);
-        if($task != null){
+        if ($task != null) {
             return $this
                 ->responseService
                 ->response(
@@ -82,7 +82,7 @@ class TaskController extends Controller
             return $this->responseService
                 ->response(
                     [],
-                    [ "Couldn't find task." ]
+                    ["Couldn't find task."]
                 );
         }
     }
@@ -90,7 +90,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
@@ -105,7 +105,7 @@ class TaskController extends Controller
             return $this->responseService
                 ->response(
                     [],
-                    [ $e->getcode() . ' : ' . $e->getmessage() ]
+                    [$e->getcode() . ' : ' . $e->getmessage()]
                 );
         }
     }
