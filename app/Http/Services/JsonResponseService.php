@@ -1,18 +1,17 @@
 <?php
 
-
 namespace App\Http\Services;
-
 
 use App\Http\Interfaces\ResponseInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
 
 class JsonResponseService implements ResponseInterface
 {
     /**
-     * @param Collection|array $data
-     * @param Collection|array $errors
+     * @param array|AnonymousResourceCollection $data
+     * @param array|AnonymousResourceCollection $errors
      * @return JsonResponse
      */
     public function response($data, $errors = []): JsonResponse
@@ -21,7 +20,7 @@ class JsonResponseService implements ResponseInterface
 
         $response = [
             'success' => $success,
-            'data' => $data,
+            'data ' => $data,
             'errors' => $errors,
         ];
 
